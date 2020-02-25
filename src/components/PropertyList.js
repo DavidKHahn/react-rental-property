@@ -9,7 +9,10 @@ class PropertyList extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`https://dev1-sample.azurewebsites.net/properties.json`, {mode: 'no-cors'})
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const url= 'https://dev1-sample.azurewebsites.net/properties.json';
+
+    fetch(proxyUrl+url)
       .then(response => response.json())
       .then(data => {
         this.setState({
