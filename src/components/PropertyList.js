@@ -1,5 +1,5 @@
 import React from 'react';
-import spongeBob from '../spongebob_ight_imma_head_out.jpg';
+import spongeBob from '../assets/spongebob_ight_imma_head_out.jpg';
 import './PropertyList.css';
 
 class PropertyList extends React.Component {
@@ -47,9 +47,9 @@ class PropertyList extends React.Component {
 
                   <p>Address: {address && address.address1 ? address.address1 : 'N/A'}</p>
                   <p>Year Built: {physical && physical.yearBuilt ? physical.yearBuilt : 'N/A'}</p>
-                  <p>List Price: ${financial && financial.listPrice ? financial.listPrice : 'N/A'}</p>
-                  <p>Monthly Rent: ${financial && financial.monthlyRent ? financial.monthlyRent : 'N/A'}</p>
-                  <p>Gross Yield: {(financial && (financial.monthlyRent * 12 / financial.listPrice).toFixed(4))}%</p>
+                  <p>List Price: {financial && financial.listPrice ? '$' + financial.listPrice : 'N/A'}</p>
+                  <p>Monthly Rent: {financial && financial.monthlyRent ? '$' + financial.monthlyRent : 'N/A'}</p>
+                  <p>Gross Yield: {(financial && financial.monthlyRent && financial.listPrice ? (financial.monthlyRent * 12 / financial.listPrice).toFixed(4) + '%' : 'N/A')}</p>
                 </div>
               );
             })
