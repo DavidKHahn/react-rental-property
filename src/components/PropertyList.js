@@ -9,7 +9,7 @@ class PropertyList extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`https://dev1-sample.azurewebsites.net/properties.json`)
+    fetch(`https://dev1-sample.azurewebsites.net/properties.json`, {mode: 'no-cors'})
       .then(response => response.json())
       .then(data => {
         this.setState({
