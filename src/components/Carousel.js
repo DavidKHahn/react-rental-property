@@ -1,0 +1,33 @@
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import './Carousel.css';
+
+const ImageCarousel = props => {
+    console.log(props.history.location.state, 'asfdasd')
+    const photos = props.history.location.state.resources.photos
+    return (
+        <>
+        <button className="backBtn" onClick={props.history.goBack}>Click to go back</button>
+        <Carousel>
+            {
+                photos.map(photo => {
+                    console.log(photo, 'oioi')
+                    return (
+                        <div>
+                            <img className='image' src={photo.url} alt="rental-carousel" />
+                        </div>
+                    )
+                })
+            }
+        </Carousel>
+
+        <p className="address">Address:{' '}{props.history && props.history.location.state.address}</p>
+
+        </>
+    )
+}
+
+
+export default ImageCarousel;
+

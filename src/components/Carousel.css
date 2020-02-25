@@ -1,0 +1,16 @@
+.address {
+    text-align: center;
+}
+
+.backBtn{
+    background-color: salmon;
+    color: #fff;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px
+}
+
+.image {
+    width: '60%';
+    height: '50%';
+}
