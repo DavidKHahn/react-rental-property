@@ -9,7 +9,6 @@ class PropertyList extends React.Component {
   }
 
   componentDidMount() {
-    // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const proxyUrl = 'https://sheltered-citadel-24811.herokuapp.com/';
     const url= 'https://dev1-sample.azurewebsites.net/properties.json';
 
@@ -24,12 +23,7 @@ class PropertyList extends React.Component {
       })
   }
 
-  // handleClick = () => {
-  //   this.props.history.push(`/${this.state.properties.id}`);
-  // }
-
   render() {
-    console.log(this.state.properties)
     return (
       <>
         <h2>Mobile Programming Properties:</h2>
@@ -43,7 +37,6 @@ class PropertyList extends React.Component {
                     className="image"
                     id={id}
                     onClick={(e) => {
-                      // console.log(e.target.id, )
                       this.props.history.push(`/property/${e.target.id}`, { address: address.address1, resources })
                     }} src={mainImageUrl ? mainImageUrl : spongeBob}
                     alt="rental-properties"

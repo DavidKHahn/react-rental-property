@@ -4,7 +4,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './Carousel.css';
 
 const ImageCarousel = props => {
-    console.log(props.history.location.state, 'asfdasd')
     const photos = props.history.location.state.resources.photos
     return (
         <>
@@ -12,7 +11,6 @@ const ImageCarousel = props => {
             <Carousel>
                 {
                     photos.map(photo => {
-                        // console.log(photo, 'oioi')
                         return (
                             <div>
                                 <img className='image' src={photo.url} alt="rental-carousel" />
