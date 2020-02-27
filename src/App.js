@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Carousel from './components/Carousel';
-import PropertyList from './components/PropertyList';
+import GetProperties from './components/GetProperties';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route exact path="/" component={PropertyList} />
+            <Route exact path="/" component={GetProperties} />
             <Route path="/property/:id" component={Carousel} />
           </Switch>
         </div>
