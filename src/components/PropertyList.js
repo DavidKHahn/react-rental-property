@@ -1,35 +1,39 @@
 import React from 'react';
-import spongeBob from '../assets/spongebob_ight_imma_head_out.jpg';
+import * as constUrls from '../globals/constants';
+import { images } from '../globals/images/index';
 import './PropertyList.css';
 
 class PropertyList extends React.Component {
   state = {
-    isLoading: true,
-    properties: []
+    isLoading: false,
+    properties: [],
+    error: null,
   }
 
   componentDidMount() {
-    const proxyUrl = 'https://sheltered-citadel-24811.herokuapp.com/';
-    const url= 'https://dev1-sample.azurewebsites.net/properties.json';
-
-    fetch(proxyUrl+url)
+    this.setState({ isLoading: true });
+    fetch(`${constUrls.PROXY_URL}${constUrls.FETCH_URL}`)
       .then(response => response.json())
-      .then(data => {
-        this.setState({
-          properties: data.properties,
-          isLoading: false
-        },
-          () => console.log('properties', this.state.properties))
-      })
+      .then(data => this.setState({ properties: data.properties, isLoading: false }))
+      .catch(error => this.setState({ error, isLoading: false }))
   }
 
   render() {
+    const { error, isLoading, properties } = this.state;
+    if (error) {
+      return <h3>{error.message}</h3>;
+    }
+
+    if (!properties.length) {
+      return <h3>We're all sold out of rental properties. Please check back soon!</h3>;
+    }
+
     return (
       <>
         <h2>Mobile Programming Properties:</h2>
         <div className="container">
-          {!this.state.isLoading ? (
-            this.state.properties.map(property => {
+          {!isLoading ? (
+            properties.map(property => {
               const { address, mainImageUrl, id, physical, financial, resources } = property;
               return (
                 <div className="card" key={id}>
@@ -38,7 +42,7 @@ class PropertyList extends React.Component {
                     id={id}
                     onClick={(e) => {
                       this.props.history.push(`/property/${e.target.id}`, { address: address.address1, resources })
-                    }} src={mainImageUrl ? mainImageUrl : spongeBob}
+                    }} src={mainImageUrl ? mainImageUrl : images.spongebob}
                     alt="rental-properties"
                   ></img>
 
@@ -59,7 +63,5 @@ class PropertyList extends React.Component {
     )
   }
 }
-
-
 
 export default PropertyList;

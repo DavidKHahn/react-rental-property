@@ -4,7 +4,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './Carousel.css';
 
 const ImageCarousel = props => {
-    const photos = props.history.location.state.resources.photos
+    const photos = props.history.location.state.resources.photos;
+
     return (
         <>
             <button className="backBtn" onClick={props.history.goBack}>Click to go back</button>
